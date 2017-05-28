@@ -1,1 +1,10 @@
 <p>This is index.html.erb for posts </p>
+
+<% @posts.each do |post| %>
+  <div class="post-container">
+    <!-- links to title, post path -->
+    <h2 class="title"><%= link_to post.title, post %></h2>
+    <!-- date in month day, year format -->
+    <p class="date"><%= post.created_at.strftime("%B %d, %Y")%></p>
+  </div>
+<% end %>

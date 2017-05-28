@@ -1,10 +1,12 @@
 class PostsController < ApplicationController
-  # all posts on index page
+  # all posts on index page - ordered newest to oldest
   def index
+    @posts = Post.all.order('created_at DESC')
   end
 
 # create new post
   def new
+    @post = Post.new
   end
 
 # saving post to database
