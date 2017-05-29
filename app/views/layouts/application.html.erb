@@ -13,15 +13,31 @@
         <%= image_tag "betty.JPG" %>
         <% end %>
     </div>
+
+    <ul>
+      <li class="category">Website</li>
+      <li><%= link_to "BikeLog", root_path %></li>
+      <li>About</li>
+    </ul>
+    <p class="login">Login</p>
   </div>
 
-  <ul>
-    <li class="category">Website</li>
-    <li><%= link_to "BikeLog", root_path %></li>
-    <li>About</li>
-  </ul>
+  <div id="main_content">
+    <div id="header">
+      <p>Posts</p>
+      <div class="buttons">
+        <button class="button"><%= link_to "New Post", new_post_path %></button>
+        <button class="button">Log Out</button>
+      </div>
+    </div>
 
-<%= yield %>
+    <% flash.each do |name, msg| %>
+      <%= content_tag(:div, msg, class: "alert") %>
+    <% end %>
+
+  <%= yield %>
+  </div>
+
 
 </body>
 </html>
