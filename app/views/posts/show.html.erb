@@ -1,13 +1,25 @@
-<p>post show page!</p>
+<div id="post-content">
+  <h2 class="title">
+    <%= @post.title %>
+  </h2>
 
-<h2 class="title">
-  <%= @post.title %>
-</h2>
+  <p class="date-and-links">
+    Submitted <%= time_ago_in_words(@post.created_at) %> ago
+    <% if user_signed_in? %>
+      | <%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to 'Delete', post_path(@post), method: :delete, data: {confirm: 'Are you sure?'} %>
+      <% end %>
+    <!-- confirm throws alert for user to confirm deletion -->
+  </p>
 
-<p class="date">
-  Submitted <%= time_ago_in_words(@post.created_at) %> ago
-</p>
+  <p class="body">
+    <%= @post.body %>
+  </p>
 
-<p class="body">
-  <%= @post.body %>
-</p>
+  <div id="comments">
+    <h4><%= @post.comments.count %> Comments </h4>
+    <%= render @post.comments %>
+
+    <h3>Add a comment:</h3>
+    <%= render 'comments/form' %>
+  </div>
+</div>
