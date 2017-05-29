@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # from devise - authenticate users before viewing anything besides index, show
+  before_action :authenticate_user!, except: [:index, :show]
+
   # all posts on index page - ordered newest to oldest
   def index
     @posts = Post.all.order('created_at DESC')
