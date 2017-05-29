@@ -9,11 +9,14 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-# saving post to database
+# saving post to database if validated, else re-render new post form
   def create
     @post = Post.new(post_params)
-    @post.save
-    redirect_to @post
+    if @post.save
+      redirect_to @post
+    else
+      render 'new'
+    end
   end
 
   def show

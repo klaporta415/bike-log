@@ -2,6 +2,16 @@
 <!-- need form, text area -->
 
 <%= form_for :post, url: posts_path do |form| %>
+  <% if @post.errors.any? %>
+  <div id="errors">
+    <ul>
+      <% @post.errors.full_messages. each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
+
   <p>
     <%= form.label :title %><br>
     <%= form.text_field :title %>
